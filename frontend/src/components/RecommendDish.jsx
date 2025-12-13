@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 
 export default function RecommendDishes() {
   const [index, setIndex] = useState(0);
@@ -38,7 +39,7 @@ export default function RecommendDishes() {
           onClick={prev}
           className="text-white text-3xl px-3 hover:scale-110 transition"
         >
-          ‹
+          <FaArrowLeft/>
         </button>
 
         {/* Cards */}
@@ -69,7 +70,7 @@ export default function RecommendDishes() {
           onClick={next}
           className="text-white text-3xl px-3 hover:scale-110 transition"
         >
-          ›
+          <FaArrowRight/>
         </button>
       </div>
     </div>
