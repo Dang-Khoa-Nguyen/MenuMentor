@@ -1,7 +1,7 @@
 import json
 from flask import jsonify, request
 from typing import Tuple
-from backend.services import food_service
+from services import food_service
 
 class FoodController:
     @staticmethod
