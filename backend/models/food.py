@@ -13,8 +13,6 @@ class Food(db.Model):
     )
     is_available = db.Column(db.Boolean,nullable=False)
 
-    location = db.relationship("ZooLocation", backref="animals")
-
     def to_json(self):
         return {
             "id": self.id,
