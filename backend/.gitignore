@@ -1,0 +1,8 @@
+/.env
+
+__pycache__/
+*.pyc
+*.py[codz]
+*$py.class
+.pytest_cache
+*.cpython-313.pyc

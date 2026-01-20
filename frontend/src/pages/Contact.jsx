@@ -3,34 +3,47 @@ import { MdEmail } from "react-icons/md";
 import {Link} from "react-router-dom"
 import {useState} from "react";
 
+import emailjs from "emailjs-com"
+
 export default function Contact() {
-   const [form, setForm] = useState({
+     const [form, setForm] = useState({
     name: "",
     email: "",
     message: ""
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const service_id = process.env.REACT_APP_SERVICE_ID
+  const template_id = process.env.REACT_APP_TEMPLATE_ID
+  const public_key = process.env.REACT_APP_PUBLIC_KEY
 
-  await fetch("http://localhost:5000/send-email", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      name: form.name,
-      email: form.email,
-      message: form.message,
-    }),
-  });
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await emailjs.send(
+        service_id,
+        template_id,
+        {
+          form_name: form.name,
+          form_email: form.email,
+          message:form.message,
+        },
+        public_key
+      );
 
-  alert("Message sent!");
-};
+      alert("Email sent successfully!");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      alert(err);
+    } 
+    setLoading(false);
+  };
+
   return (
   <div>
     <h1 className="flex justify-center text-4xl font-extrabold text-green-900 p-10">
@@ -87,7 +100,7 @@ const handleSubmit = async (e) => {
 
     {/* Contact form */}
     <div className="max-w-xl mx-auto bg-white shadow-lg rounded-xl p-8">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={sendEmail} className="flex flex-col gap-4">
         <input
           type="text"
           placeholder="Your name"
@@ -119,7 +132,7 @@ const handleSubmit = async (e) => {
           type="submit"
           className="bg-green-700 text-white font-semibold py-2 rounded-lg hover:bg-green-800 transition"
         >
-          Send message
+          {loading ? ("Send message.....") : ("Send message") }
         </button>
       </form>
     </div>
