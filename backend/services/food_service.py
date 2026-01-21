@@ -1,5 +1,5 @@
 from config import db
-from models import Food
+from backend.database.supabase_functions import Food
 
 def list_food():
     """Return all food as list of dicts."""
