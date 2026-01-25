@@ -22,7 +22,7 @@ export default function WelcomeSpeech() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
   <div className="mt-20">
