@@ -18,11 +18,11 @@ export default function Menu() {
             if (!res.ok) throw new Error("Failed to fetch foods");
 
             const data = await res.json();
-            setFoods(data);     
+            setMenuItems(data);     
         } catch (err) {
-        setError(err.message);
+        setErrorMenu(err.message);
         } finally {
-        setLoading(false);
+        setLoadingMenu(false);
         }
     }
 
@@ -30,7 +30,8 @@ export default function Menu() {
         fetchMenu();
     })
 
-    console.log(food)
+    console.log(loadingMenu)
+    console.log(errorMenu)
     // const fetchFoods = async () => {
     //     setLoading(true);
     //     setError(null);
