@@ -1,7 +1,56 @@
 import { CiSearch } from "react-icons/ci";
+import { useState, useEffect } from "react";
+// import useFood from "../hooks/useFood";
+import Card from "../components/ui/Card";
 
 export default function Menu() {
     const categories =  ["Rice","Soup","Drinks","Dessert"]
+    // const {food, loading,error} = useFood();
+    const [menuItems, setMenuItems] = useState([]);
+    const [loadingMenu, setLoadingMenu] = useState(false);
+    const [errorMenu, setErrorMenu] = useState(null);
+
+    const fetchMenu = async () => {
+        setLoadingMenu(true)
+        setErrorMenu(null);
+        try {
+            const res = await fetch("/api/serverless_food");
+            if (!res.ok) throw new Error("Failed to fetch foods");
+
+            const data = await res.json();
+            setFoods(data);     
+        } catch (err) {
+        setError(err.message);
+        } finally {
+        setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchMenu();
+    })
+
+    console.log(food)
+    // const fetchFoods = async () => {
+    //     setLoading(true);
+    //     setError(null);
+
+    //     try {
+    //         const res = await fetch("/api/serverless_food");
+    //         if (!res.ok) throw new Error("Failed to fetch foods");
+
+    //         const data = await res.json();
+    //         setFoods(data);     
+    //     } catch (err) {
+    //     setError(err.message);
+    //     } finally {
+    //     setLoading(false);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     fetchFoods();
+    // }, []);
 
     return (
     <div>
@@ -38,6 +87,17 @@ export default function Menu() {
 
         
         <h1 className="text-3xl p-10">Menu Page</h1>
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mx-auto max-w-6xl place-items-center">
+            {menuItems.map((each) => (
+                <Card
+                    key={each.id}
+                    name={each.name}
+                    description={each.description}
+                    price={each.price}
+                    imagePath={each.image_path}
+                />
+            ))}
+        </div>
     </div>
     );
 }

@@ -18,7 +18,7 @@ export default function ContactUs() {
 
         {/* Contact details */}
         <div className="space-y-3 text-center">
-          <p className="flex justify-center gap-1 mt-4">
+          <div className="flex justify-center gap-1 mt-4">
             <div className="flex justify-center items-center">
                 <MdEmail/> 
             </div>
@@ -30,21 +30,21 @@ export default function ContactUs() {
             >
               contact@menumentor.com
             </a>
-          </p>
+          </div>
 
-          <p className="flex justify-center gap-1 mt-4">
+          <div className="flex justify-center gap-1 mt-4">
             <div className="flex justify-center items-center">
                 <FaLocationDot/>
             </div>
             <span className="font-semibold">Location:</span> Adelaide, Australia
-          </p>
+          </div>
 
-          <p className="flex justify-center gap-1 mt-4">
+          <div className="flex justify-center gap-1 mt-4">
             <div className="flex justify-center items-center">
                 <FaPhoneAlt/>
             </div>
             <span className="font-semibold">Phone number: </span> +61000000000
-          </p>
+          </div>
         </div>
       </div>
       <div className="flex justify-center gap-10 text-3xl">

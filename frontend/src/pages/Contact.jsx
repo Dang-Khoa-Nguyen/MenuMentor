@@ -56,7 +56,7 @@ export default function Contact() {
 
     {/* Contact info */}
     <div className="flex flex-col items-center gap-2 text-gray-700 mb-8">
-      <p className="flex justify-center gap-1 mb-2">
+      <div className="flex justify-center gap-1 mb-2">
         <div className="flex justify-center items-center">
             <MdEmail/> 
         </div>
@@ -68,14 +68,14 @@ export default function Contact() {
         >
           contact@menumentor.com
         </a>
-      </p>
+      </div>
 
-      <p className="flex justify-center gap-1">
+      <div className="flex justify-center gap-1">
         <div className="flex justify-center items-center">
             <FaPhoneAlt/>
         </div>
         <span className="font-semibold">Phone number:</span> +61 4XX XXX XXX
-      </p>
+      </div>
     </div>
 
     {/* Social icons */}
