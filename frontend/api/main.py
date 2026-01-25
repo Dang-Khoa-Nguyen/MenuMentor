@@ -1,4 +1,4 @@
-from api import register_blueprints
+from api.server_api import register_blueprints
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import smtplib

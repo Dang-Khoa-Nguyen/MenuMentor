@@ -1,5 +1,5 @@
 from config import db
-from models import TypeFood
+from api.database.supabase_functions import TypeFood
 
 def list_type_food():
     """Return all type food as list of dicts."""
