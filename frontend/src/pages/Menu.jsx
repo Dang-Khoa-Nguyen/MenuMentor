@@ -28,8 +28,8 @@ export default function Menu() {
 
     useEffect(() => {
         fetchMenu();
-    })
-
+    },[])
+    console.log(menuItems)
     console.log(loadingMenu)
     console.log(errorMenu)
     // const fetchFoods = async () => {
