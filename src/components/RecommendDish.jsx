@@ -47,7 +47,7 @@ export default function RecommendDishes() {
           {dishes.slice(index, index + visibleCount).map((dish) => (
             <div
               key={dish.id}
-              className="w-56 bg-white rounded-xl shadow-lg border hover:scale-105 transition"
+              className="w-56 bg-white rounded-xl shadow-lg border transition duration-500"
             >
               <img
                 src={dish.img}

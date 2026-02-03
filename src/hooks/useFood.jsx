@@ -19,7 +19,7 @@ export default function useFood() {
             }
         }
         load();
-        console.log(food)
     },[]) 
+
     return {food, loading, error};
 }

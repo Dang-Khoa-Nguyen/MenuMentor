@@ -1,11 +1,11 @@
 import { CiSearch } from "react-icons/ci";
 import { useState, useEffect } from "react";
-// import useFood from "../hooks/useFood";
+import useFood from "../hooks/useFood";
 import Card from "../components/ui/Card";
 
 export default function Menu() {
     const categories =  ["Rice","Soup","Drinks","Dessert"]
-    // const {food, loading,error} = useFood();
+    const {food, loading,error} = useFood();
     const [menuItems, setMenuItems] = useState([]);
     const [loadingMenu, setLoadingMenu] = useState(false);
     const [errorMenu, setErrorMenu] = useState(null);
@@ -14,11 +14,7 @@ export default function Menu() {
         setLoadingMenu(true)
         setErrorMenu(null);
         try {
-            const res = await fetch("/api/serverless_food");
-            if (!res.ok) throw new Error("Failed to fetch foods");
-
-            const data = await res.json();
-            setMenuItems(data);     
+            setMenuItems(food);     
         } catch (err) {
         setErrorMenu(err.message);
         } finally {
@@ -28,34 +24,11 @@ export default function Menu() {
 
     useEffect(() => {
         fetchMenu();
-    },[])
-    console.log(menuItems)
-    console.log(loadingMenu)
-    console.log(errorMenu)
-    // const fetchFoods = async () => {
-    //     setLoading(true);
-    //     setError(null);
-
-    //     try {
-    //         const res = await fetch("/api/serverless_food");
-    //         if (!res.ok) throw new Error("Failed to fetch foods");
-
-    //         const data = await res.json();
-    //         setFoods(data);     
-    //     } catch (err) {
-    //     setError(err.message);
-    //     } finally {
-    //     setLoading(false);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     fetchFoods();
-    // }, []);
-
+    },[food])
     return (
-    <div>
-        <div className="flex justify-center mt-6">
+    <div className="mt-8">
+        <h1 className="text-3xl text-center">Menu Page</h1>
+        <div className="flex justify-center mt-3">
             <div className="relative w-1/2">
                 {/* Search bar*/}
                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xl">
@@ -69,7 +42,7 @@ export default function Menu() {
             </div>
         </div>
         {/* Categories (Soup, Rice, Drinks, Dessert)*/}
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-4 mb-4">
         {categories.map(category => (
             <div key={category}>
                 <input type="radio" name="categoryGroup" id={category} className="hidden peer" />
@@ -85,9 +58,6 @@ export default function Menu() {
             </div>
         ))}
         </div>
-
-        
-        <h1 className="text-3xl p-10">Menu Page</h1>
 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mx-auto max-w-6xl place-items-center">
             {menuItems.map((each) => (
                 <Card
